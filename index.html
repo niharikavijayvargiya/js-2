@@ -1,0 +1,119 @@
+`<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color and Shape Changer</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .shape-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .circle {
+            width: 200px;
+            height: 200px;
+            background-color: #3498db; /* Default color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .triangle,
+        .square {
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .triangle {
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 150.21px solid #e74c3c; /* Default color */
+        }
+
+        .square {
+            width: 150px;
+            height: 150px;
+            background-color: #2ecc71; /* Default color */
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+             margin-top: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="shape-container" id="shapeContainer">
+            <div class="circle" id="circle">
+                <div class="triangle" id="triangle"></div>
+                <div class="square" id="square"></div>
+            </div>
+        </div>
+
+        <button onclick="changeColor()">Change Color</button>
+        <button onclick="changeShape()">Change Shape</button>
+    </div>
+
+    <script>
+const colors = [
+    '#3498db', // Blue
+    '#f39c12', // Yellow
+    '#9b59b6', // Purple
+    '#e67e22', // Orange
+    '#e91e63', // Pink
+    '#00bcd4', // Cyan
+    '#009688', // Teal
+    '#001f3f', // Deep Blue
+    '#ffd700', // Gold
+    '#c0c0c0'  // Silver
+];
+        let colorIndex = 0;
+
+        function changeColor() {
+            const circle = document.getElementById("circle");
+            colorIndex = (colorIndex + 1) % colors.length;
+            circle.style.backgroundColor = colors[colorIndex];
+        }
+
+        function changeShape() {
+            const triangle = document.getElementById("triangle");
+            const square = document.getElementById("square");
+
+            if (triangle.style.display === "none" || triangle.style.display === "") {
+                triangle.style.display = "block";
+                square.style.display = "none";
+            } else {
+                triangle.style.display = "none";
+                square.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
